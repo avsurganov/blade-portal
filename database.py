@@ -1,13 +1,13 @@
 from databases import Database
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
+
 from config import settings
 
 DATABASE_URL = settings.DATABASE_URL
 
 database = Database(DATABASE_URL)
-metadata = MetaData()
 
 # This will be used to create the tables
 Base = declarative_base()
@@ -25,3 +25,11 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+# Utility
+def save_to_db(db: Session, db_model):
+    db.add(db_model)
+    db.commit()
+    db.refresh(db_model)
+    return db_model

@@ -6,5 +6,5 @@ T = TypeVar("T")
 
 
 class GenericResponse(GenericModel, Generic[T]):
-    status: str
+    status: str = "success"
     details: Optional[Union[T, str, Dict[str, Any]]]
