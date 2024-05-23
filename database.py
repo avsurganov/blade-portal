@@ -1,9 +1,12 @@
 from databases import Database
+from fastapi import Depends
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
 from config import settings
+from repositories.campaigns_repository import CampaignRepository
+from repositories.users_repository import UserRepository
 
 DATABASE_URL = settings.DATABASE_URL
 
@@ -27,9 +30,10 @@ def get_db():
         db.close()
 
 
-# Utility
-def save_to_db(db: Session, db_model):
-    db.add(db_model)
-    db.commit()
-    db.refresh(db_model)
-    return db_model
+# Repositories
+def get_user_repository(db: Session = Depends(get_db)) -> UserRepository:
+    return UserRepository(db)
+
+
+def get_campaign_repository(db: Session = Depends(get_db)) -> CampaignRepository:
+    return CampaignRepository(db)

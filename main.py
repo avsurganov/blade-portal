@@ -11,9 +11,13 @@ app = FastAPI()
 
 app_version = "v1"
 
-app.include_router(users.router, prefix="/api/"+app_version+"/users", tags=["users"])
-app.include_router(auth.router, prefix="/api/"+app_version+"/auth", tags=["auth"])
-app.include_router(campaigns.router, prefix="/api/"+app_version+"/campaigns", tags=["campaigns"])
+app.include_router(
+    users.router, prefix="/api/" + app_version + "/users", tags=["users"]
+)
+app.include_router(auth.router, prefix="/api/" + app_version + "/auth", tags=["auth"])
+app.include_router(
+    campaigns.router, prefix="/api/" + app_version + "/campaigns", tags=["campaigns"]
+)
 
 
 @app.on_event("startup")
@@ -26,7 +30,7 @@ async def shutdown():
     await database.disconnect()
 
 
-@app.get("/api/"+app_version+"/status", response_model=GenericResponse[str])
+@app.get("/api/" + app_version + "/status", response_model=GenericResponse[str])
 async def get_status():
     return GenericResponse[str](details="All systems operational.")
 

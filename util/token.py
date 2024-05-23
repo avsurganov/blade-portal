@@ -3,10 +3,10 @@ from datetime import datetime, timedelta, timezone
 from fastapi import HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
-from sqlalchemy.orm import Session
 
 from config import settings
-from models.users import get_user_by_email
+from schemas.users import User
+from repositories.users_repository import UserRepository
 
 SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = settings.ALGORITHM
@@ -37,20 +37,19 @@ def verify_access_token(token: str, credentials_exception):
     return email
 
 
-def authenticate_user(token: str, db: Session):
+def authenticate_user(token: str, user_repo: UserRepository) -> User:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        email = verify_access_token(token, credentials_exception)
+        username = verify_access_token(token, credentials_exception)
     except HTTPException:
         raise credentials_exception
 
-    user = get_user_by_email(db, email)
+    user = user_repo.get_user_by_email(username)
     if user is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Could not validate credentials"
-        )
+        raise credentials_exception
+
+    return user
