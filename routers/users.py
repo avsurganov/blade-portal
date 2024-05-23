@@ -29,9 +29,9 @@ async def create_user(user: UserCreate, db: Session = Depends(get_db)):
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
-        return GenericResponse(status="Success", details=db_user)
+        return GenericResponse[UserRead](status="Success", details=db_user)
     except IntegrityError:
-        return GenericResponse(status="Error", details="User already exists")
+        return GenericResponse[str](status="Error", details="User already exists")
 
 
 @router.get("/users/", response_model=GenericResponse[List[UserRead]])
@@ -44,13 +44,13 @@ async def read_users(skip: int = 0, limit: int = 10, token: str = Depends(oauth2
     try:
         username = verify_access_token(token, credentials_exception)
     except HTTPException as e:
-        return GenericResponse(status="Error", details="Unauthorized")
+        return GenericResponse[str](status="Error", details="Unauthorized")
 
     user = get_user(db, username)
 
     if user is None:
-        return GenericResponse(status="Error", details="User not found")
+        return GenericResponse[str](status="Error", details="User not found")
 
     users = db.query(User).offset(skip).limit(limit).all()
 
-    return GenericResponse(status="Success", details=users)
+    return GenericResponse[List[UserRead]](status="Success", details=users)

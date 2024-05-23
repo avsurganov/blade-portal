@@ -1,4 +1,5 @@
 from datetime import timedelta
+from typing import Dict
 
 from fastapi import APIRouter
 from fastapi import Depends
@@ -17,11 +18,11 @@ router = APIRouter()
 def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user = get_user(db, user.username)
     if not db_user or not verify_password(user.password, db_user.hashed_password):
-        return GenericResponse(status="Error", details="Invalid credentials")
+        return GenericResponse[str](status="Error", details="Invalid credentials")
 
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(data={"sub": db_user.username}, expires_delta=access_token_expires)
-    return GenericResponse(status="Success", details={"access_token": access_token, "token_type": "bearer"})
+    return GenericResponse[Dict](status="Success", details={"access_token": access_token, "token_type": "bearer"})
 
 
 
