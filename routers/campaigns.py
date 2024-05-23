@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, status, HTTPException
 
 from api.campaigns import CampaignResponse, CampaignCreate, JoinCampaignRequest
 from api.common import GenericResponse
-from database import get_user_repository, get_campaign_repository
-from schemas.campaigns import Campaign
+from repositories import get_user_repository, get_campaign_repository
+from schemas.campaign import Campaign
 from repositories.campaigns_repository import CampaignRepository
 from repositories.users_repository import UserRepository
 from util.token import oauth2_scheme, authenticate_user

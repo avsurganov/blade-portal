@@ -5,8 +5,8 @@ from sqlalchemy.exc import IntegrityError
 
 from api.common import GenericResponse
 from api.users import UserCreate, UserResponse
-from database import get_user_repository
-from schemas.users import User
+from repositories import get_user_repository
+from schemas.user import User
 from repositories.users_repository import UserRepository
 from util.hashing import hash_password
 from util.token import oauth2_scheme, authenticate_user

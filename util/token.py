@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 
 from config import settings
-from schemas.users import User
+from schemas.user import User
 from repositories.users_repository import UserRepository
 
 SECRET_KEY = settings.SECRET_KEY
