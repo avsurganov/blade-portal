@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+
+from api.common import GenericResponse
 from database import database, engine, Base
 from routers import users, auth
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 
 app = FastAPI()
 
@@ -16,6 +21,17 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    errors = exc.errors()
+    error_details = {"errors": errors}
+    response = GenericResponse[None](status="error", details=error_details)
+    return JSONResponse(
+        status_code=422,
+        content=response.dict(),
+    )
 
 
 if __name__ == "__main__":
