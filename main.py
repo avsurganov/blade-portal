@@ -39,6 +39,11 @@ async def shutdown():
     await database.disconnect()
 
 
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
+
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to the Blades Portal API"}
