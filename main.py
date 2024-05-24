@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException
 
 from api.common import GenericResponse
-from database import database, Base
+from database import database, Base, engine
 from routers import users, auth, campaigns, characters
 
 app = FastAPI(
@@ -32,7 +32,7 @@ app.include_router(characters.router, prefix="/api/" + app_version + "/character
 @app.on_event("startup")
 async def startup():
     await database.connect()
-    Base.metadata.create_all(bind=database.engine)
+    Base.metadata.create_all(bind=engine)
 
 
 @app.on_event("shutdown")
