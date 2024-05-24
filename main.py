@@ -5,19 +5,29 @@ from starlette.exceptions import HTTPException
 
 from api.common import GenericResponse
 from database import database, engine, Base
-from routers import users, auth, campaigns
+from routers import users, auth, campaigns, characters
 
-app = FastAPI()
+app = FastAPI(
+    title="Blades Portal API",
+    description="An API for managing Blades in the Dark game campaigns, characters, and sessions.",
+    version="1.0.0",
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "Vlad Surganov",
+        "email": "avsurganov@gmail.com",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+)
 
 app_version = "v1"
 
-app.include_router(
-    users.router, prefix="/api/" + app_version + "/users", tags=["users"]
-)
 app.include_router(auth.router, prefix="/api/" + app_version + "/auth", tags=["auth"])
-app.include_router(
-    campaigns.router, prefix="/api/" + app_version + "/campaigns", tags=["campaigns"]
-)
+app.include_router(users.router, prefix="/api/" + app_version + "/users", tags=["users"])
+app.include_router(campaigns.router, prefix="/api/" + app_version + "/campaigns", tags=["campaigns"])
+app.include_router(characters.router, prefix="/api/" + app_version + "/characters", tags=["characters"])
 
 
 @app.on_event("startup")
@@ -28,6 +38,11 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
+
+
+@app.get("/")
+async def read_root():
+    return {"message": "Welcome to the Blades Portal API"}
 
 
 @app.get("/api/" + app_version + "/status", response_model=GenericResponse[str])

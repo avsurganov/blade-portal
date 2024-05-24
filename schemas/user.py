@@ -2,7 +2,7 @@ import uuid
 
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship, Session
+from sqlalchemy.orm import relationship
 
 from database import Base
 from schemas.user_campaign import user_campaign
@@ -25,6 +25,7 @@ class User(Base):
     avatar = Column(String, nullable=True)
     hashed_password = Column(String)
 
+    characters = relationship("Character", back_populates="user")
     campaigns = relationship("Campaign", back_populates="game_master")
     joined_campaigns = relationship(
         "Campaign", secondary=user_campaign, back_populates="players"

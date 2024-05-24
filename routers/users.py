@@ -15,7 +15,9 @@ router = APIRouter()
 
 
 @router.post("/", response_model=GenericResponse[UserResponse])
-async def create_user(user: UserCreate, user_repo: UserRepository = Depends(get_user_repository)):
+async def create_user(
+    user: UserCreate, user_repo: UserRepository = Depends(get_user_repository)
+):
     try:
         db_user = User(
             email=user.email,
@@ -35,9 +37,9 @@ async def create_user(user: UserCreate, user_repo: UserRepository = Depends(get_
 
 
 @router.get("/", response_model=GenericResponse[List[UserResponse]])
-async def read_users(
+async def show_users(
     token: str = Depends(oauth2_scheme),
-    user_repo: UserRepository = Depends(get_user_repository)
+    user_repo: UserRepository = Depends(get_user_repository),
 ):
     authenticate_user(token, user_repo)
     users = user_repo.get_all_users()
