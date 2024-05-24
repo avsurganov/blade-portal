@@ -4,8 +4,8 @@ from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from app.database import Base
-from app.schemas.user_campaign import user_campaign
+from database import Base
+from schemas.user_campaign import user_campaign
 
 
 class User(Base):

@@ -2,12 +2,12 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.api.character.character import CharacterResponse, CharacterCreate
-from app.api.common import GenericResponse
-from app.repositories import get_user_repository, get_character_repository
-from app.repositories.characters_repository import CharacterRepository
-from app.repositories.users_repository import UserRepository
-from app.util.token import oauth2_scheme, authenticate_user
+from api.character.character import CharacterResponse, CharacterCreate
+from api.common import GenericResponse
+from repositories import get_user_repository, get_character_repository
+from repositories.characters_repository import CharacterRepository
+from repositories.users_repository import UserRepository
+from util.token import oauth2_scheme, authenticate_user
 
 router = APIRouter()
 

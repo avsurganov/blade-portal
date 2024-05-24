@@ -3,8 +3,8 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from app.api.character.character_attributes import Playbook, Heritage, Background, Vice
-from app.api.character.character_skills import Insight, Prowess, Resolve
+from api.character.character_attributes import Playbook, Heritage, Background, Vice
+from api.character.character_skills import Insight, Prowess, Resolve
 
 
 class CharacterCreate(BaseModel):

@@ -2,10 +2,10 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from app.api.character.character import CharacterCreate
-from app.api.character.character_skills import Skill
-from app.schemas.character import Character
-from app.util.playbook_defaults import PLAYBOOK_DEFAULTS
+from api.character.character import CharacterCreate
+from api.character.character_skills import Skill
+from schemas.character import Character
+from util.playbook_defaults import PLAYBOOK_DEFAULTS
 
 
 class CharacterRepository:

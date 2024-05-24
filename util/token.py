@@ -4,9 +4,9 @@ from fastapi import HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 
-from app.config import settings
-from app.schemas.user import User
-from app.repositories.users_repository import UserRepository
+from config import settings
+from schemas.user import User
+from repositories.users_repository import UserRepository
 
 SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = settings.ALGORITHM

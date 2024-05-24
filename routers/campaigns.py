@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status, HTTPException
 
-from app.api.campaigns import CampaignResponse, CampaignCreate, JoinCampaignRequest
-from app.api.common import GenericResponse
-from app.repositories import get_user_repository, get_campaign_repository
-from app.schemas.campaign import Campaign
-from app.repositories.campaigns_repository import CampaignRepository
-from app.repositories.users_repository import UserRepository
-from app.util.token import oauth2_scheme, authenticate_user
+from api.campaigns import CampaignResponse, CampaignCreate, JoinCampaignRequest
+from api.common import GenericResponse
+from repositories import get_user_repository, get_campaign_repository
+from schemas.campaign import Campaign
+from repositories.campaigns_repository import CampaignRepository
+from repositories.users_repository import UserRepository
+from util.token import oauth2_scheme, authenticate_user
 
 router = APIRouter()
 

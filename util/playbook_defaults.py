@@ -1,5 +1,5 @@
-from app.api.character.character_attributes import Playbook
-from app.api.character.character_skills import Skill, Prowess, Resolve, Insight
+from api.character.character_attributes import Playbook
+from api.character.character_skills import Skill, Prowess, Resolve, Insight
 
 PLAYBOOK_DEFAULTS = {
     Playbook.CUTTER: {

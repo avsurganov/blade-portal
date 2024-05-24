@@ -3,11 +3,11 @@ from datetime import timedelta
 from fastapi import APIRouter, HTTPException, status
 from fastapi import Depends
 
-from app.api.auth import UserLogin, AuthResponse
-from app.api.common import GenericResponse
-from app.repositories import UserRepository, get_user_repository
-from app.util.hashing import verify_password
-from app.util.token import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
+from api.auth import UserLogin, AuthResponse
+from api.common import GenericResponse
+from repositories import UserRepository, get_user_repository
+from util.hashing import verify_password
+from util.token import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
 
 router = APIRouter()
 

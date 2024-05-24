@@ -3,8 +3,8 @@ from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import relationship
 import uuid
 
-from app.api.character.character_attributes import Playbook, Heritage, Background, Vice
-from app.database import Base
+from api.character.character_attributes import Playbook, Heritage, Background, Vice
+from database import Base
 
 
 class Character(Base):

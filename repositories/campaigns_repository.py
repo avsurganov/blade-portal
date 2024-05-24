@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from app.schemas.campaign import Campaign
+from schemas.campaign import Campaign
 from uuid import UUID
 
-from app.schemas.user import User
+from schemas.user import User
 
 
 class CampaignRepository:

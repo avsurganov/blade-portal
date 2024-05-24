@@ -3,7 +3,7 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from app.api.users import UserResponse
+from api.users import UserResponse
 
 
 class CampaignCreate(BaseModel):

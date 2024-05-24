@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Table
 from sqlalchemy.dialects.postgresql import UUID
 
-from app.database import Base
+from database import Base
 
 user_campaign = Table(
     "user_campaign",

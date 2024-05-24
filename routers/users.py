@@ -3,13 +3,13 @@ from typing import List
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.exc import IntegrityError
 
-from app.api.common import GenericResponse
-from app.api.users import UserCreate, UserResponse
-from app.repositories import get_user_repository
-from app.schemas.user import User
-from app.repositories.users_repository import UserRepository
-from app.util.hashing import hash_password
-from app.util.token import oauth2_scheme, authenticate_user
+from api.common import GenericResponse
+from api.users import UserCreate, UserResponse
+from repositories import get_user_repository
+from schemas.user import User
+from repositories.users_repository import UserRepository
+from util.hashing import hash_password
+from util.token import oauth2_scheme, authenticate_user
 
 router = APIRouter()
 

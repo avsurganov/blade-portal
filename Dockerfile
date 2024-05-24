@@ -5,19 +5,19 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 WORKDIR /app
 
 # Copy the dependencies file to the working directory
-COPY requirements.txt .
+COPY . /app
 
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the content of the local src directory to the working directory
-COPY . .
+# Make port 80 available to the world outside this container
+EXPOSE 80
 
-# Copy the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
+# Copy the entrypoint script to the working directory
+COPY entrypoint.sh /app/entrypoint.sh
 
 # Make the entrypoint script executable
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 # Command to run the entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
