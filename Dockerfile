@@ -1,23 +1,20 @@
-# Use the official image as a parent image
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the dependencies file to the working directory
+# Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install any dependencies
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
 
-# Copy the entrypoint script to the working directory
-COPY entrypoint.sh /app/entrypoint.sh
+# Define environment variable
+ENV PYTHONUNBUFFERED=1
 
-# Make the entrypoint script executable
-RUN chmod +x /app/entrypoint.sh
-
-# Command to run the entrypoint script
-ENTRYPOINT ["/app/entrypoint.sh"]
+# Run app.py when the container launches
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
