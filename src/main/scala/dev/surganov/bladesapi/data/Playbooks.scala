@@ -3,7 +3,7 @@ package dev.surganov.bladesapi.data
 import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookList, PlaybookName, SpecialAbility}
 
 object Playbooks {
-  private val specialAbilities: Map[PlaybookName, List[SpecialAbility]] = Map[PlaybookName, List[SpecialAbility]](
+  val specialAbilities: Map[PlaybookName, List[SpecialAbility]] = Map[PlaybookName, List[SpecialAbility]](
     PlaybookName.Cutter -> List[SpecialAbility](
       SpecialAbility(
         name = "Battleborn",
