@@ -1,4 +1,6 @@
 import Dependencies.*
+import sbt.Keys.*
+import sbtassembly.AssemblyPlugin.autoImport._
 
 name := "Blades API"
 
@@ -41,3 +43,11 @@ libraryDependencies ++= Seq(
 ) ++ swaggerDependencies
 
 ThisBuild / scalafmtOnCompile := true
+
+// Assembly settings
+assembly / mainClass := Some("dev.surganov.bladesapi.Api") // Replace with your main class
+
+assembly / assemblyMergeStrategy := {
+  case PathList("META-INF", _*) => MergeStrategy.discard
+  case x                        => MergeStrategy.first
+}

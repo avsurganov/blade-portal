@@ -1,0 +1,8 @@
+-J-Dfile.encoding=UTF8
+-J-XX:+TieredCompilation
+-J-XX:+UseG1GC
+-J-XX:MaxMetaspaceSize=1024M
+-J-XX:ReservedCodeCacheSize=500M
+-J-Xms1G
+-J-Xmx5G
+-J-Xss4M
