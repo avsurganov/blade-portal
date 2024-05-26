@@ -23,9 +23,9 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 2. **Access the API:**
 
-    - **API Endpoints:** <|API_URL|/api>
-    - **Swagger UI:** <|API_URL|/swagger>
-    - **Swagger JSON:** <|API_URL|/swagger.json>
+    - **API Endpoints:** <https://blades-portal-api.surganov.dev/api>
+    - **Swagger UI:** <https://blades-portal-api.surganov.dev/swagger>
+    - **Swagger JSON:** <https://blades-portal-api.surganov.dev/swagger.json>
 
 ## API Endpoints
 
@@ -34,7 +34,7 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 ## Documentation
 
-The API documentation is provided using Swagger. You can access the Swagger UI at <|API_URL|/swagger>.
+The API documentation is provided using Swagger. You can access the Swagger UI at <https://blades-portal-api.surganov.dev/swagger>.
 
 ## Contact
 

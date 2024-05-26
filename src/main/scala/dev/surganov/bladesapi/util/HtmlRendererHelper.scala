@@ -9,13 +9,9 @@ import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 
 object HtmlRendererHelper extends ConfigProvider {
-  private def processReadme(content: String): String = {
-    content.replaceAll("""\|API_URL\|""", config.url)
-  }
-
   def renderReadmeToHtml: String = {
     // Read and convert README.md to HTML with custom classes
-    val readmeContent: String = processReadme(new String(Files.readAllBytes(Paths.get("README.md"))))
+    val readmeContent: String = new String(Files.readAllBytes(Paths.get("README.md")))
     val parser: Parser = Parser.builder().build()
     val document = parser.parse(readmeContent)
     val renderer: HtmlRenderer = HtmlRenderer.builder().build()
