@@ -15,4 +15,3 @@ object Background extends BladesEnum[Background] with Enum[Background] with Play
   case object Noble extends Background
   case object Underworld extends Background
 }
-

@@ -81,3 +81,6 @@ src_managed/
 logs
 tmp
 !/.gitkeep
+
+# Env Variables
+.env

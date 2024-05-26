@@ -1,6 +1,7 @@
 package dev.surganov.bladesapi.playbooks.models
 
-import play.api.libs.json.{Format, Json}
+import dev.surganov.bladesapi.common.{SuccessResponse, SuccessResponseFormat}
+import play.api.libs.json.{Format, JsResult, JsValue, Json}
 
 case class Playbook(
     name: PlaybookName,
@@ -11,13 +12,6 @@ object Playbook {
   implicit val format: Format[Playbook] = Json.format
 }
 
-case class PlaybookList(
-    playbooks: List[Playbook]
-)
-object PlaybookList {
-  implicit val format: Format[PlaybookList] = Json.format
-}
-
 case class PlaybookOptions(
     heritageOptions: List[String] = Heritage.all.map(_.toString),
     backgroundOptions: List[String] = Background.all.map(_.toString),
@@ -25,4 +19,14 @@ case class PlaybookOptions(
 )
 object PlaybookOptions {
   implicit val format: Format[PlaybookOptions] = Json.format
+}
+
+case class PlaybookResponse(override val details: Playbook) extends SuccessResponse[Playbook](details = details)
+object PlaybookResponse {
+  implicit val format: Format[PlaybookResponse] = SuccessResponseFormat.format(PlaybookResponse.apply)
+}
+
+case class PlaybookListResponse(override val details: List[Playbook]) extends SuccessResponse[List[Playbook]](details = details)
+object PlaybookListResponse {
+  implicit val format: Format[PlaybookListResponse] = SuccessResponseFormat.format(PlaybookListResponse.apply)
 }

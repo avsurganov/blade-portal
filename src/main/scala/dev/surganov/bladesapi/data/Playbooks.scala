@@ -1,6 +1,6 @@
 package dev.surganov.bladesapi.data
 
-import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookList, PlaybookName, SpecialAbility}
+import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookName, SpecialAbility}
 
 object Playbooks {
   val specialAbilities: Map[PlaybookName, List[SpecialAbility]] = Map[PlaybookName, List[SpecialAbility]](
@@ -284,9 +284,9 @@ object Playbooks {
     ))
   }
 
-  def all: PlaybookList = PlaybookList(playbooks = {
+  def all: List[Playbook] = {
     PlaybookName.all.map { name =>
       Playbook(name, specialAbilities(name))
     }
-  })
+  }
 }

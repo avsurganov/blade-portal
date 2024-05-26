@@ -1,24 +1,23 @@
 package dev.surganov.bladesapi.swagger
 
-import com.github.swagger.pekko.model.{Info, License, Contact}
+import com.github.swagger.pekko.SwaggerHttpService
+import com.github.swagger.pekko.model.{Contact, Info, License}
 import dev.surganov.bladesapi.playbooks.PlaybookService
+import dev.surganov.bladesapi.util.config.ConfigProvider
 import io.swagger.v3.oas.models.ExternalDocumentation
 
-/** Sample SwaggerDocService, replace values with those applicable your application.
-  * By default, a swagger UI is made available too on the default routes. If you don't need the UI, or want
-  * to load the UI in another way, replace [[SwaggerHttpWithUiService]] with [[com.github.swagger.pekko.SwaggerHttpService]]
-  */
-object SwaggerDocService extends SwaggerHttpWithUiService {
+object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
   override val apiClasses: Set[Class[_]] = Set(
     PlaybookService.getClass
   )
-  override val host = "localhost:8080"
+  override val host = s"${config.host}:${config.host}"
   override val info: Info = Info(
-    description = "An API for Blades in the Dark",
+    description =
+      "This project is an API for the game \"Blades in the Dark\". The API provides access to playbooks, abilities, crews, and other game-related data.",
     contact = Some(
       Contact(
         name = "Vlad Surganov",
-        url = "https://github.com/avsurganov/blade-portal-api/issues",
+        url = "https://www.linkedin.com/in/avsurganov/",
         email = "avsurganov@gmail.com"
       )
     ),
@@ -30,6 +29,8 @@ object SwaggerDocService extends SwaggerHttpWithUiService {
     ),
     version = "0.1"
   )
+  override val serverURLs: Seq[String] = Seq(config.url)
+
   override val externalDocs: Option[ExternalDocumentation] = Some(
     new ExternalDocumentation().description("GitHub").url("https://github.com/avsurganov/blade-portal-api")
   )
