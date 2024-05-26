@@ -1,0 +1,91 @@
+body {
+    font-family: Verdana, Tahoma, Geneva, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #1c1c1c;
+    color: #f4f4f4;
+}
+
+.container, .navbar {
+    max-width: 1000px; /* Wider for monitor view */
+    margin: auto;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #e0e0e0;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+pre {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 5px;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #c7254e;
+}
+
+a {
+    color: #ff9800; /* Orange highlights */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ff5722; /* Darker orange on hover */
+}
+
+blockquote {
+    border-left: 5px solid #ff9800; /* Orange highlights */
+    padding-left: 10px;
+    margin-left: 0;
+    color: #ccc;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+.navbar {
+    background-color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: #ff9800; /* Orange highlights */
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.navbar-brand:hover, .navbar-nav .nav-link:hover {
+    color: #ff5722; /* Darker orange on hover */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar-brand, .navbar-nav .nav-link {
+        margin: 5px 0;
+    }
+
+    .container, .navbar {
+        padding: 10px;
+    }
+}
