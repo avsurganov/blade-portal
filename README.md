@@ -13,7 +13,7 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 ### Prerequisites
 
 - Java 17 or higher
-- sbt 1.9.7 or higher
+- sbt 1.8.1 or higher
 
 ### Running the Application
 
