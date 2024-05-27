@@ -13,7 +13,6 @@ import org.apache.pekko.http.scaladsl.server.Directives._
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, ExecutionContext}
-import scala.io.StdIn
 
 object Api extends App with LoggerAccess with ConfigProvider {
   implicit val system: ActorSystem[Any] = ActorSystem(Behaviors.empty, "blades-api")

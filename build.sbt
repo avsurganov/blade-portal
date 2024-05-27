@@ -1,4 +1,4 @@
-import Dependencies._
+import Dependencies.*
 enablePlugins(JavaAppPackaging)
 
 ThisBuild / scalaVersion := "2.12.15"
@@ -24,8 +24,8 @@ lazy val root = (project in file("."))
       // JSON
       "com.typesafe.play" %% "play-json" % "2.10.5",
       // Enums
-      "com.beachape" %% "enumeratum" % "1.7.0",
-      "com.beachape" %% "enumeratum-play-json" % "1.7.0",
+      "com.beachape" %% "enumeratum" % Versions.enum,
+      "com.beachape" %% "enumeratum-play-json" % Versions.enum,
       // HTML Render
       "com.vladsch.flexmark" % "flexmark-all" % "0.64.8",
       // ENV Support

@@ -31,10 +31,10 @@ pre {
 }
 
 code {
-    background: #f4f4f4;
     padding: 2px 5px;
     border-radius: 3px;
-    color: #c7254e;
+    color: #ff9800;
+    font-family: Monospaced, serif;
 }
 
 a {
