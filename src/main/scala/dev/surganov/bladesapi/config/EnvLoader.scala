@@ -1,16 +1,20 @@
 package dev.surganov.bladesapi.config
 
 import dev.surganov.bladesapi.util.LoggerAccess
-
 import scala.io.Source
+import scala.util.{Try, Failure, Success}
 
 object EnvLoader extends LoggerAccess {
   def loadEnvFile(): Unit = {
-    val source = Source.fromFile(".env")
-    for (line <- source.getLines()) {
-      val Array(key, value) = line.split("=", 2)
-      sys.props += (key -> value)
+    Try(Source.fromFile(".env")) match {
+      case Success(source) =>
+        for (line <- source.getLines()) {
+          val Array(key, value) = line.split("=", 2)
+          sys.props += (key -> value)
+        }
+        source.close()
+      case Failure(exception) =>
+        log.warn("No .env file found, skipping environment variable loading from file.")
     }
-    source.close()
   }
 }
