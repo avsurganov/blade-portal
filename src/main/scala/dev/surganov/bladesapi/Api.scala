@@ -45,8 +45,7 @@ object Api extends App with LoggerAccess with ConfigProvider {
     }
   }
 
-//  private val bindingFuture = Http().newServerAt(config.host, config.port).bind(routes)
-  private val bindingFuture = Http().newServerAt("0.0.0.0", 8080).bind(routes)
+  private val bindingFuture = Http().newServerAt(config.host, config.port).bind(routes)
 
   bindingFuture.onComplete {
     case scala.util.Success(binding) =>
