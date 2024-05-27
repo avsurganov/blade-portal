@@ -16,12 +16,12 @@ import scala.io.StdIn
 
 object Api extends App with LoggerAccess with ConfigProvider {
   implicit val system: ActorSystem[Any] = ActorSystem(Behaviors.empty, "blades-api")
-  sys.addShutdownHook {
-    system.terminate()
-    system.whenTerminated
-  }
-
   implicit val ec: ExecutionContext = system.executionContext
+
+  sys.addShutdownHook {
+    log.info("Shutdown hook triggered, terminating the system.")
+    terminate()
+  }
 
   import dev.surganov.bladesapi.util.CustomExceptionHandler._
 
@@ -48,16 +48,42 @@ object Api extends App with LoggerAccess with ConfigProvider {
   private val bindingFuture = Http().newServerAt(config.host, config.port).bind(routes)
 
   bindingFuture.onComplete {
-    case scala.util.Success(_) =>
-      log.info(s"Server online at ${config.url}")
+    case scala.util.Success(binding) =>
+      log.info(s"Server online at [${config.host}:${config.port}] - ${config.url}")
+      // Log bound address
+      log.info(s"Bound to ${binding.localAddress}")
     case scala.util.Failure(exception) =>
-      log.info(s"Failed to bind HTTP endpoint, terminating system: ${exception.getMessage}")
+      log.error(s"Failed to bind HTTP endpoint, terminating system: ${exception.getMessage}")
       system.terminate()
   }
 
   // Prevent the application from terminating immediately
-  StdIn.readLine() // Press ENTER to stop the server
-  bindingFuture
-    .flatMap(_.unbind()) // Trigger unbinding from the port
-    .onComplete(_ => system.terminate()) // Shutdown the system
+  log.info("Application started. Press ENTER to stop the server.")
+  try {
+    StdIn.readLine() // Press ENTER to stop the server
+  } catch {
+    case e: Exception =>
+      log.error(s"Exception caught during StdIn.readLine: ${e.getMessage}")
+  } finally {
+    bindingFuture
+      .flatMap(_.unbind())
+      .onComplete {
+        case scala.util.Success(_) =>
+          log.info("Successfully unbound from the port.")
+          terminate()
+        case scala.util.Failure(exception) =>
+          log.error(s"Failed to unbind from the port: ${exception.getMessage}")
+          terminate()
+      }
+  }
+
+  private def terminate(): Unit = {
+    system.terminate()
+    system.whenTerminated.onComplete {
+      case scala.util.Success(_) =>
+        log.info("Actor system terminated successfully.")
+      case scala.util.Failure(exception) =>
+        log.error(s"Actor system termination failed: ${exception.getMessage}")
+    }
+  }
 }
