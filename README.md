@@ -17,16 +17,20 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 ### Running the Application
 
-1. **Run the application:**
+1. **Compile the application:**
 
 ```
 $ sbt clean compile
+```
+
+2. **Run the application:**
+
+```
 $ sbt run
 ```
 
-2. **Access the API:**
+3. **Access the API:**
 
-    - **API Endpoints:** <https://blades-portal-api.surganov.dev/api>
     - **Swagger UI:** <https://blades-portal-api.surganov.dev/swagger>
     - **Swagger JSON:** <https://blades-portal-api.surganov.dev/swagger.json>
 
