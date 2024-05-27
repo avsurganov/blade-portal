@@ -19,15 +19,13 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 1. **Compile the application:**
 
-```
-$ sbt clean compile
-```
+   ```
+   $ sbt clean compile
 
 2. **Run the application:**
 
-```
-$ sbt run
-```
+   ```
+   $ sbt run
 
 3. **Access the API:**
 
@@ -45,7 +43,7 @@ The API documentation is provided using Swagger. You can access the Swagger UI a
 
 ## Contact
 
-For any issues or contributions, please visit the [GitHub repository](https://github.com/avsurganov/blade-portal-api/issues) or contact [Vlad Surganov](https://www.linkedin.com/in/avsurganov/).
+For any issues or contributions, please visit the [GitHub repository](https://github.com/avsurganov/blade-portal-api) or contact [Vlad Surganov](https://www.linkedin.com/in/avsurganov/).
 
 ## License
 

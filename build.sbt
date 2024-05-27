@@ -5,6 +5,15 @@ ThisBuild / scalaVersion := "2.12.15"
 ThisBuild / javacOptions ++= Seq("-source", "17", "-target", "17")
 ThisBuild / scalafmtOnCompile := true
 
+val swaggerDependencies = Seq(
+  "jakarta.ws.rs" % "jakarta.ws.rs-api" % "4.0.0",
+  "com.github.swagger-akka-http" %% "swagger-pekko-http" % "2.12.0",
+  "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.12.3",
+  "com.github.swagger-akka-http" %% "swagger-enumeratum-module" % "2.9.0",
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % Versions.jackson,
+  "io.swagger.core.v3" % "swagger-jaxrs2-jakarta" % Versions.swagger
+)
+
 lazy val root = (project in file("."))
   .settings(
     name := "Blades API",
@@ -32,12 +41,3 @@ lazy val root = (project in file("."))
       "com.github.pureconfig" %% "pureconfig" % "0.17.6",
     ) ++ swaggerDependencies
   )
-
-val swaggerDependencies = Seq(
-  "jakarta.ws.rs" % "jakarta.ws.rs-api" % "4.0.0",
-  "com.github.swagger-akka-http" %% "swagger-pekko-http" % "2.12.0",
-  "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.12.3",
-  "com.github.swagger-akka-http" %% "swagger-enumeratum-module" % "2.9.0",
-  "com.fasterxml.jackson.module" %% "jackson-module-scala" % Versions.jackson,
-  "io.swagger.core.v3" % "swagger-jaxrs2-jakarta" % Versions.swagger
-)
