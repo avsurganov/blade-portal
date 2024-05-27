@@ -11,7 +11,8 @@ import org.apache.pekko.http.scaladsl.Http
 import org.apache.pekko.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
 import org.apache.pekko.http.scaladsl.server.Directives._
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, ExecutionContext}
 import scala.io.StdIn
 
 object Api extends App with LoggerAccess with ConfigProvider {
@@ -57,25 +58,8 @@ object Api extends App with LoggerAccess with ConfigProvider {
       system.terminate()
   }
 
-  // Prevent the application from terminating immediately
-  log.info("Application started. Press ENTER to stop the server.")
-  try {
-    StdIn.readLine() // Press ENTER to stop the server
-  } catch {
-    case e: Exception =>
-      log.error(s"Exception caught during StdIn.readLine: ${e.getMessage}")
-  } finally {
-    bindingFuture
-      .flatMap(_.unbind())
-      .onComplete {
-        case scala.util.Success(_) =>
-          log.info("Successfully unbound from the port.")
-          terminate()
-        case scala.util.Failure(exception) =>
-          log.error(s"Failed to unbind from the port: ${exception.getMessage}")
-          terminate()
-      }
-  }
+  // Prevent the application from terminating immediately by awaiting termination
+  Await.result(system.whenTerminated, Duration.Inf)
 
   private def terminate(): Unit = {
     system.terminate()
