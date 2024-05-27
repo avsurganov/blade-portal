@@ -32,7 +32,7 @@ $ sbt run
 3. **Access the API:**
 
     - **Swagger UI:** <https://blades-portal-api.surganov.dev/swagger>
-    - **Swagger JSON:** <https://blades-portal-api.surganov.dev/swagger.json>
+    - **Swagger JSON:** <https://blades-portal-api.surganov.dev/api-docs/swagger.json>
 
 ## API Endpoints
 
