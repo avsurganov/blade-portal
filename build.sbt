@@ -5,6 +5,7 @@ name := "Blades API"
 version := "0.1"
 
 scalaVersion := "2.13.12"
+javacOptions ++= Seq("-source", "17", "-target", "17")
 
 organization := "dev.surganov.bladesapi"
 
