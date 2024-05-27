@@ -2,8 +2,8 @@ package dev.surganov.bladesapi.swagger
 
 import com.github.swagger.pekko.SwaggerHttpService
 import com.github.swagger.pekko.model.{Contact, Info, License}
+import dev.surganov.bladesapi.config.ConfigProvider
 import dev.surganov.bladesapi.playbooks.PlaybookService
-import dev.surganov.bladesapi.util.config.ConfigProvider
 import io.swagger.v3.oas.models.ExternalDocumentation
 
 object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
@@ -27,7 +27,7 @@ object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
         url = "https://creativecommons.org/licenses/by/4.0/"
       )
     ),
-    version = "0.1"
+    version = config.version
   )
   override val serverURLs: Seq[String] = Seq(config.url)
 

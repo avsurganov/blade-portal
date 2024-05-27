@@ -1,11 +1,13 @@
 import Dependencies.*
+enablePlugins(JavaAppPackaging)
 
 name := "Blades API"
 
-version := "0.1"
+version := "1.0.0"
 
-scalaVersion := "2.13.12"
-javacOptions ++= Seq("-source", "17", "-target", "17")
+ThisBuild / scalaVersion := "2.12.19"
+ThisBuild / javacOptions ++= Seq("-source", "17", "-target", "17")
+ThisBuild / scalafmtOnCompile := true
 
 organization := "dev.surganov.bladesapi"
 
@@ -40,5 +42,3 @@ libraryDependencies ++= Seq(
   // ENV Support
   "com.github.pureconfig" %% "pureconfig" % "0.17.6",
 ) ++ swaggerDependencies
-
-ThisBuild / scalafmtOnCompile := true

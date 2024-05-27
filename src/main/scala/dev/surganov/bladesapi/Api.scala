@@ -1,8 +1,8 @@
 package dev.surganov.bladesapi
 
+import dev.surganov.bladesapi.config.ConfigProvider
 import dev.surganov.bladesapi.playbooks.PlaybookService
 import dev.surganov.bladesapi.swagger.SwaggerDocService
-import dev.surganov.bladesapi.util.config.ConfigProvider
 import dev.surganov.bladesapi.util.{HtmlRendererHelper, LoggerAccess}
 import org.apache.pekko.actor.typed.ActorSystem
 import org.apache.pekko.actor.typed.scaladsl.Behaviors

@@ -1,4 +1,4 @@
-package dev.surganov.bladesapi.util.config
+package dev.surganov.bladesapi.config
 
 import dev.surganov.bladesapi.util.LoggerAccess
 

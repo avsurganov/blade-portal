@@ -1,9 +1,9 @@
-package dev.surganov.bladesapi.util.config
+package dev.surganov.bladesapi.config
 
 import pureconfig._
 import pureconfig.generic.auto._
 
-case class AppConfig(host: String, port: Int, url: String)
+case class AppConfig(host: String, port: Int, url: String, version: String)
 
 object Config {
   def load(): AppConfig = {
