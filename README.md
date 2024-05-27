@@ -21,11 +21,13 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
    ```
    $ sbt clean compile
+   ```
 
 2. **Run the application:**
 
    ```
    $ sbt run
+   ```
 
 3. **Access the API:**
 
