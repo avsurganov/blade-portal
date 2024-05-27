@@ -3,10 +3,12 @@ package dev.surganov.bladesapi.common
 import enumeratum.{Enum, EnumEntry, PlayJsonEnum}
 import play.api.libs.json.{Format, JsResult, JsValue, Json}
 
+import scala.collection.immutable
+
 sealed trait ResponseStatus extends EnumEntry
 
-object ResponseStatus extends BladesEnum[ResponseStatus] with Enum[ResponseStatus] with PlayJsonEnum[ResponseStatus] {
-  val values: IndexedSeq[ResponseStatus] = findValues
+object ResponseStatus extends Enum[ResponseStatus] with PlayJsonEnum[ResponseStatus] {
+  val values: immutable.IndexedSeq[ResponseStatus] = findValues
 
   case object Success extends ResponseStatus
   case object Error extends ResponseStatus

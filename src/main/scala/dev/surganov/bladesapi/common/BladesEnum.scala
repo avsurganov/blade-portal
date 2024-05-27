@@ -1,6 +1,8 @@
 package dev.surganov.bladesapi.common
 
-trait BladesEnum[T] {
-  val values: IndexedSeq[T]
-  def all: List[T] = values.toList
+import enumeratum.{EnumEntry, Enum}
+
+trait BladesEnum[A <: EnumEntry] { _: Enum[A] =>
+  val values: IndexedSeq[A]
+  def all: List[A] = values.toList
 }

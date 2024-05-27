@@ -2,10 +2,12 @@ package dev.surganov.bladesapi.playbooks.models
 import dev.surganov.bladesapi.common.BladesEnum
 import enumeratum._
 
+import scala.collection.immutable
+
 sealed trait Background extends EnumEntry
 
 object Background extends BladesEnum[Background] with Enum[Background] with PlayJsonEnum[Background] {
-  val values: IndexedSeq[Background] = findValues
+  val values: immutable.IndexedSeq[Background] = findValues
 
   case object Academic extends Background
   case object Labor extends Background

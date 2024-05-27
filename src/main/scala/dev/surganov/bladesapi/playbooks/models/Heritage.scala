@@ -3,10 +3,12 @@ package dev.surganov.bladesapi.playbooks.models
 import dev.surganov.bladesapi.common.BladesEnum
 import enumeratum._
 
+import scala.collection.immutable
+
 sealed trait Heritage extends EnumEntry
 
 object Heritage extends BladesEnum[Heritage] with Enum[Heritage] with PlayJsonEnum[Heritage] {
-  val values: IndexedSeq[Heritage] = findValues
+  val values: immutable.IndexedSeq[Heritage] = findValues
 
   case object Akoros extends Heritage
   case object TheDaggerIsles extends Heritage {
