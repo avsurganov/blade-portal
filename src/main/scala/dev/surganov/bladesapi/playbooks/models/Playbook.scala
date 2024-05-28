@@ -6,6 +6,7 @@ import play.api.libs.json.{Format, Json}
 case class Playbook(
     name: PlaybookName,
     specialAbilities: List[SpecialAbility],
+    attributes: PlaybookAttributes,
     contacts: List[PlaybookContact],
     availableItems: List[Item],
     additionalAvailableItems: List[Item],
