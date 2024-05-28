@@ -1,7 +1,7 @@
 package dev.surganov.bladesapi.playbooks
 
 import dev.surganov.bladesapi.common.ErrorResponse
-import dev.surganov.bladesapi.data.Playbooks
+import dev.surganov.bladesapi.data.playbooks.{PlaybookContactData, PlaybooksData, SpecialAbilityData}
 import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookListResponse, PlaybookName, PlaybookResponse}
 import dev.surganov.bladesapi.util.{JsonContentTypeSupport, JsonSupport, LoggerAccess}
 import io.swagger.v3.oas.annotations.enums.ParameterIn
@@ -43,7 +43,7 @@ object PlaybookService extends JsonSupport with JsonContentTypeSupport with Logg
     path("playbooks") {
       get {
         log.info("Retrieving all playbooks")
-        complete(PlaybookListResponse(Playbooks.all))
+        complete(PlaybookListResponse(PlaybooksData.all))
       }
     }
   }
@@ -76,9 +76,8 @@ object PlaybookService extends JsonSupport with JsonContentTypeSupport with Logg
     path("playbooks" / Segment) { name =>
       get {
         log.info(s"Retrieving playbook: $name...")
-
         Try { PlaybookName.withName(name) } match {
-          case Success(pname) => complete(Playbook(pname, Playbooks.specialAbilities(pname)))
+          case Success(name) => complete(PlaybooksData.playbook(name))
           case Failure(ex) =>
             log.error(ex.getMessage)
             complete((StatusCodes.BadRequest, ErrorResponse(message = s"Playbook [$name] doesn't exist")))
