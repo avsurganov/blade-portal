@@ -23,19 +23,19 @@ object PlaybookService extends JsonSupport with JsonContentTypeSupport with Logg
   def routes: Route = getAllPlaybooks ~ getPlaybookByName
 
   @GET
+  @Path("/")
   @Operation(
     summary = "Get all playbooks",
     responses = Array(
       new ApiResponse(
         responseCode = "200",
         description = "All playbooks retrieved",
-        headers = Array(new Header(name = "Content-Type", description = "application/json")),
-        content = Array(new Content(schema = new Schema(implementation = classOf[PlaybookListResponse])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[PlaybookListResponse])))
       ),
       new ApiResponse(
         responseCode = "500",
         description = "Internal server error",
-        content = Array(new Content(schema = new Schema(implementation = classOf[ErrorResponse])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[ErrorResponse])))
       )
     )
   )
@@ -48,27 +48,34 @@ object PlaybookService extends JsonSupport with JsonContentTypeSupport with Logg
     }
   }
 
+
   @GET
   @Path("{name}")
   @Operation(
     summary = "Get playbook by name",
-    parameters = Array(new Parameter(name = "name", in = ParameterIn.PATH, description = "Name of the playbook")),
+    parameters = Array(
+      new Parameter(
+        name = "name",
+        in = ParameterIn.PATH,
+        description = "Name of the playbook",
+        required = true
+      )
+    ),
     responses = Array(
       new ApiResponse(
         responseCode = "200",
         description = "Playbook retrieved",
-        headers = Array(new Header(name = "Content-Type", description = "application/json")),
-        content = Array(new Content(schema = new Schema(implementation = classOf[PlaybookResponse])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[PlaybookResponse])))
       ),
       new ApiResponse(
         responseCode = "400",
         description = "Playbook doesn't exist",
-        content = Array(new Content(schema = new Schema(implementation = classOf[ErrorResponse])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[ErrorResponse])))
       ),
       new ApiResponse(
         responseCode = "500",
         description = "Internal server error",
-        content = Array(new Content(schema = new Schema(implementation = classOf[ErrorResponse])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[ErrorResponse])))
       )
     )
   )
@@ -77,7 +84,7 @@ object PlaybookService extends JsonSupport with JsonContentTypeSupport with Logg
       get {
         log.info(s"Retrieving playbook: $name...")
         Try { PlaybookName.withName(name) } match {
-          case Success(name) => complete(PlaybooksData.playbook(name))
+          case Success(name) => complete(PlaybookResponse(PlaybooksData.playbook(name)))
           case Failure(ex) =>
             log.error(ex.getMessage)
             complete((StatusCodes.BadRequest, ErrorResponse(message = s"Playbook [$name] doesn't exist")))
