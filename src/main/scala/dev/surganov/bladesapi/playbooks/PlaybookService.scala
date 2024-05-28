@@ -1,17 +1,16 @@
 package dev.surganov.bladesapi.playbooks
 
 import dev.surganov.bladesapi.common.ErrorResponse
-import dev.surganov.bladesapi.data.playbooks.{PlaybookContactData, PlaybooksData, SpecialAbilityData}
-import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookListResponse, PlaybookName, PlaybookResponse}
+import dev.surganov.bladesapi.data.playbooks.PlaybooksData
+import dev.surganov.bladesapi.playbooks.models.{PlaybookListResponse, PlaybookName, PlaybookResponse}
 import dev.surganov.bladesapi.util.{JsonContentTypeSupport, JsonSupport, LoggerAccess}
 import io.swagger.v3.oas.annotations.enums.ParameterIn
-import io.swagger.v3.oas.annotations.headers.Header
 import io.swagger.v3.oas.annotations.media.{Content, Schema}
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
 import io.swagger.v3.oas.annotations.{Operation, Parameter}
 import jakarta.ws.rs.{GET, Path}
-import org.apache.pekko.http.scaladsl.model.{StatusCode, StatusCodes}
+import org.apache.pekko.http.scaladsl.model.StatusCodes
 import org.apache.pekko.http.scaladsl.server.Directives._
 import org.apache.pekko.http.scaladsl.server._
 

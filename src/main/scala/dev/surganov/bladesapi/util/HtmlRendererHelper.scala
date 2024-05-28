@@ -1,12 +1,13 @@
 package dev.surganov.bladesapi.util
 
-import java.nio.file.{Files, Paths}
 import com.vladsch.flexmark.html.HtmlRenderer
 import com.vladsch.flexmark.parser.Parser
 import dev.surganov.bladesapi.config.ConfigProvider
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
+
+import java.nio.file.{Files, Paths}
 
 object HtmlRendererHelper extends ConfigProvider {
   def renderReadmeToHtml: String = {

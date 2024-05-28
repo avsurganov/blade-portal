@@ -1,6 +1,6 @@
 package dev.surganov.bladesapi.data.playbooks
 
-import dev.surganov.bladesapi.playbooks.models.{Item, Playbook, PlaybookList, PlaybookName, SpecialAbility}
+import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookList, PlaybookName}
 
 object PlaybooksData {
   def all: PlaybookList = {
