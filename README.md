@@ -49,4 +49,4 @@ For any issues or contributions, please visit the [GitHub repository](https://gi
 
 ## License
 
-This project is licensed under the Creative Commons Attribution 4.0 Unported License. See the [LICENSE](https://creativecommons.org/licenses/by/4.0/) file for details.
+This project is licensed under the Creative Commons Attribution 4.0 Unported License. See the [LICENSE](https://github.com/avsurganov/blade-portal-api?tab=CC-BY-4.0-1-ov-file#readme) file for details.
