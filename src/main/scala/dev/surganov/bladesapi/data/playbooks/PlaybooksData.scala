@@ -7,11 +7,10 @@ object PlaybooksData {
     val playbooks: List[Playbook] = PlaybookName.all.map { name =>
       playbook(name)
     }
-    val items: List[Item] = ItemData.defaultItems
-    PlaybookList(playbooks, items)
+    PlaybookList(playbooks)
   }
 
   def playbook(name: PlaybookName): Playbook = {
-    Playbook(name, SpecialAbilityData.data(name), PlaybookContactData.data(name), ItemData.data(name))
+    Playbook(name, SpecialAbilityData.data(name), PlaybookContactData.data(name), ItemData.data(name), ItemData.defaultItems)
   }
 }

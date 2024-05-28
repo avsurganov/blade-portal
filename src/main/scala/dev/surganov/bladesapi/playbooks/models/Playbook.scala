@@ -7,7 +7,8 @@ case class Playbook(
     name: PlaybookName,
     specialAbilities: List[SpecialAbility],
     contacts: List[PlaybookContact],
-    items: List[Item],
+    availableItems: List[Item],
+    additionalAvailableItems: List[Item],
     options: PlaybookOptions = PlaybookOptions()
 )
 object Playbook {
@@ -16,7 +17,6 @@ object Playbook {
 
 case class PlaybookList(
     playbooks: List[Playbook],
-    defaultItems: List[Item]
 )
 object PlaybookList {
   implicit val format: Format[PlaybookList] = Json.format
