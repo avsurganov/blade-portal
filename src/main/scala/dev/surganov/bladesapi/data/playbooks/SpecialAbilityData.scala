@@ -1,9 +1,9 @@
-package dev.surganov.bladesapi.data
+package dev.surganov.bladesapi.data.playbooks
 
-import dev.surganov.bladesapi.playbooks.models.{Playbook, PlaybookName, SpecialAbility}
+import dev.surganov.bladesapi.playbooks.models.{PlaybookName, SpecialAbility}
 
-object Playbooks {
-  val specialAbilities: Map[PlaybookName, List[SpecialAbility]] = Map[PlaybookName, List[SpecialAbility]](
+object SpecialAbilityData {
+  val data: Map[PlaybookName, List[SpecialAbility]] = Map[PlaybookName, List[SpecialAbility]](
     PlaybookName.Cutter -> List[SpecialAbility](
       SpecialAbility(
         name = "Battleborn",
@@ -282,11 +282,5 @@ object Playbooks {
       description = "Choose a special ability from another source.",
       pointsRequired = 3
     ))
-  }
-
-  def all: List[Playbook] = {
-    PlaybookName.all.map { name =>
-      Playbook(name, specialAbilities(name))
-    }
   }
 }

@@ -17,4 +17,9 @@ object PlaybookName extends BladesEnum[PlaybookName] with Enum[PlaybookName] wit
   case object Slide extends PlaybookName
   case object Spider extends PlaybookName
   case object Whisper extends PlaybookName
+
+  // Special Playbooks // TODO: Add these in later...
+//  case object Ghost extends PlaybookName
+//  case object Hull extends PlaybookName
+//  case object Vampire extends PlaybookName
 }
