@@ -1,8 +1,8 @@
-package dev.surganov.bladesapi.playbooks
+package dev.surganov.bladesapi.crews
 
 import dev.surganov.bladesapi.common.ErrorResponse
-import dev.surganov.bladesapi.data.playbooks.PlaybooksData
-import dev.surganov.bladesapi.playbooks.models.{PlaybookListResponse, PlaybookName, PlaybookResponse}
+import dev.surganov.bladesapi.crews.models.{CrewListResponse, CrewName, CrewResponse}
+import dev.surganov.bladesapi.data.crews.CrewsData
 import dev.surganov.bladesapi.util.{JsonSupport, LoggerAccess}
 import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.media.{Content, Schema}
@@ -16,20 +16,20 @@ import org.apache.pekko.http.scaladsl.server._
 
 import scala.util.{Failure, Success, Try}
 
-@Path("/api/playbooks")
-@Tag(name = "Playbooks", description = "Operations related to Playbooks")
-object PlaybookService extends JsonSupport with LoggerAccess {
-  def routes: Route = getAllPlaybooks ~ getPlaybookByName
+@Path("/api/crews")
+@Tag(name = "Crews", description = "Operation related to Crews")
+object CrewService extends JsonSupport with LoggerAccess {
+  def routes: Route = getAllCrews ~ getCrewByName
 
   @GET
   @Path("/")
   @Operation(
-    summary = "Get all playbooks",
+    summary = "Get all crews",
     responses = Array(
       new ApiResponse(
         responseCode = "200",
-        description = "All playbooks retrieved",
-        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[PlaybookListResponse])))
+        description = "All crews retrieved",
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[CrewListResponse])))
       ),
       new ApiResponse(
         responseCode = "500",
@@ -38,34 +38,34 @@ object PlaybookService extends JsonSupport with LoggerAccess {
       )
     )
   )
-  def getAllPlaybooks: Route = path("playbooks") {
+  def getAllCrews: Route = path("crews") {
     get {
-      log.info("Retrieving all playbooks")
-      complete(PlaybookListResponse(PlaybooksData.all))
+      log.info("Retrieving all crews...")
+      complete(CrewListResponse(CrewsData.all))
     }
   }
 
   @GET
   @Path("{name}")
   @Operation(
-    summary = "Get playbook by name",
+    summary = "Get crew by name",
     parameters = Array(
       new Parameter(
         name = "name",
         in = ParameterIn.PATH,
-        description = "Name of the playbook",
+        description = "Name of the crew",
         required = true
       )
     ),
     responses = Array(
       new ApiResponse(
         responseCode = "200",
-        description = "Playbook retrieved",
-        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[PlaybookResponse])))
+        description = "Crew retrieved",
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[CrewResponse])))
       ),
       new ApiResponse(
         responseCode = "400",
-        description = "Playbook doesn't exist",
+        description = "Crew doesn't exist",
         content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[ErrorResponse])))
       ),
       new ApiResponse(
@@ -75,14 +75,14 @@ object PlaybookService extends JsonSupport with LoggerAccess {
       )
     )
   )
-  def getPlaybookByName: Route = path("playbooks" / Segment) { name =>
+  def getCrewByName: Route = path("crews" / Segment) { name =>
     get {
-      log.info(s"Retrieving playbook: $name...")
-      Try { PlaybookName.withName(name) } match {
-        case Success(name) => complete(PlaybookResponse(PlaybooksData.playbook(name)))
+      log.info(s"Retrieving crew: $name...")
+      Try { CrewName.withName(name) } match {
+        case Success(name) => complete(CrewResponse(CrewsData.crew(name)))
         case Failure(ex) =>
           log.error(ex.getMessage)
-          complete((StatusCodes.BadRequest, ErrorResponse(message = s"Playbook [$name] doesn't exist")))
+          complete((StatusCodes.BadRequest, ErrorResponse(message = s"Crew [$name] doesn't exist")))
       }
     }
   }

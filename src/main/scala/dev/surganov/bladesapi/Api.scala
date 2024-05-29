@@ -1,9 +1,10 @@
 package dev.surganov.bladesapi
 
 import dev.surganov.bladesapi.config.ConfigProvider
+import dev.surganov.bladesapi.crews.CrewService
 import dev.surganov.bladesapi.playbooks.PlaybookService
 import dev.surganov.bladesapi.swagger.SwaggerDocService
-import dev.surganov.bladesapi.util.{HtmlRendererHelper, LoggerAccess}
+import dev.surganov.bladesapi.util.{HtmlRendererHelper, JsonContentTypeSupport, LoggerAccess}
 import org.apache.pekko.actor.typed.ActorSystem
 import org.apache.pekko.actor.typed.scaladsl.Behaviors
 import org.apache.pekko.http.cors.scaladsl.CorsDirectives.cors
@@ -14,7 +15,7 @@ import org.apache.pekko.http.scaladsl.server.Directives._
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, ExecutionContext}
 
-object Api extends App with LoggerAccess with ConfigProvider {
+object Api extends App with LoggerAccess with ConfigProvider with JsonContentTypeSupport {
   implicit val system: ActorSystem[Any] = ActorSystem(Behaviors.empty, "blades-api")
   implicit val ec: ExecutionContext = system.executionContext
 
@@ -32,7 +33,10 @@ object Api extends App with LoggerAccess with ConfigProvider {
           complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, HtmlRendererHelper.renderReadmeToHtml))
         } ~
           pathPrefix("api") {
-            PlaybookService.routes
+            json {
+              PlaybookService.routes ~
+                CrewService.routes
+            }
           } ~
           pathPrefix("swagger") {
             getFromResourceDirectory("swagger-ui")

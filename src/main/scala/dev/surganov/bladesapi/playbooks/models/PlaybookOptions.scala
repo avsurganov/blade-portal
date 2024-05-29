@@ -1,12 +1,11 @@
 package dev.surganov.bladesapi.playbooks.models
-
-import play.api.libs.json.{Format, Json}
+import play.api.libs.json.{Json, OFormat}
 
 case class PlaybookOptions(
-    heritageOptions: List[String] = Heritage.all.map(_.toString),
-    backgroundOptions: List[String] = Background.all.map(_.toString),
-    viceOptions: List[String] = Vice.all.map(_.toString)
+    heritageOptions: List[Heritage],
+    backgroundOptions: List[Background],
+    viceOptions: List[Vice],
 )
 object PlaybookOptions {
-  implicit val format: Format[PlaybookOptions] = Json.format
+  implicit val format: OFormat[PlaybookOptions] = Json.format
 }

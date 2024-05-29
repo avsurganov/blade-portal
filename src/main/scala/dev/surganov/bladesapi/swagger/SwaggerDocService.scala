@@ -3,12 +3,14 @@ package dev.surganov.bladesapi.swagger
 import com.github.swagger.pekko.SwaggerHttpService
 import com.github.swagger.pekko.model.{Contact, Info, License}
 import dev.surganov.bladesapi.config.ConfigProvider
+import dev.surganov.bladesapi.crews.CrewService
 import dev.surganov.bladesapi.playbooks.PlaybookService
 import io.swagger.v3.oas.models.ExternalDocumentation
 
 object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
   override val apiClasses: Set[Class[_]] = Set(
-    PlaybookService.getClass
+    PlaybookService.getClass,
+    CrewService.getClass
   )
   override val host = s"${config.host}:${config.port}"
   override val info: Info = Info(

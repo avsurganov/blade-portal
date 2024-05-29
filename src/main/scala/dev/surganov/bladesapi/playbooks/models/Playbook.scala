@@ -1,5 +1,6 @@
 package dev.surganov.bladesapi.playbooks.models
 
+import dev.surganov.bladesapi.common.models.SpecialAbility
 import dev.surganov.bladesapi.common.{SuccessResponse, SuccessResponseFormat}
 import play.api.libs.json.{Format, Json}
 
@@ -10,7 +11,7 @@ case class Playbook(
     contacts: List[PlaybookContact],
     availableItems: List[Item],
     additionalAvailableItems: List[Item],
-    options: PlaybookOptions = PlaybookOptions()
+    options: PlaybookOptions = PlaybookOptions(heritageOptions = Heritage.all, backgroundOptions = Background.all, viceOptions = Vice.all)
 )
 object Playbook {
   implicit val format: Format[Playbook] = Json.format
