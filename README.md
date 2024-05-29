@@ -51,7 +51,7 @@ The API documentation is provided using Swagger. You can access the Swagger UI a
 
 ## Contact
 
-For any issues or contributions, please visit the [GitHub repository](https://github.com/avsurganov/blade-portal-api) or contact [Vlad Surganov](https://www.linkedin.com/in/avsurganov/).
+For any issues or contributions, please visit the [GitHub repository](https://github.com/avsurganov/blades-portal-api) or contact [Vlad Surganov](https://www.linkedin.com/in/avsurganov/).
 
 ## License
 

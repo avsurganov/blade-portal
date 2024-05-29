@@ -34,7 +34,7 @@ object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
   override val serverURLs: Seq[String] = Seq(config.url)
 
   override val externalDocs: Option[ExternalDocumentation] = Some(
-    new ExternalDocumentation().description("GitHub").url("https://github.com/avsurganov/blade-portal-api")
+    new ExternalDocumentation().description("GitHub").url("https://github.com/avsurganov/blades-portal-api")
   )
   //use io.swagger.v3.oas.models.security.SecurityScheme to document authn requirements for API
   //override val securitySchemeDefinitions = Map("basicAuth" -> new SecurityScheme())
