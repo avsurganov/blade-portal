@@ -1,6 +1,6 @@
 package dev.surganov.bladesapi.playbooks.models
 
-import dev.surganov.bladesapi.common.models.SpecialAbility
+import dev.surganov.bladesapi.common.models.{Contact, SpecialAbility}
 import dev.surganov.bladesapi.common.{SuccessResponse, SuccessResponseFormat}
 import play.api.libs.json.{Format, Json}
 
@@ -8,7 +8,7 @@ case class Playbook(
     name: PlaybookName,
     specialAbilities: List[SpecialAbility],
     attributes: PlaybookAttributes,
-    contacts: List[PlaybookContact],
+    contacts: List[Contact],
     availableItems: List[Item],
     additionalAvailableItems: List[Item],
     options: PlaybookOptions = PlaybookOptions(heritageOptions = Heritage.all, backgroundOptions = Background.all, viceOptions = Vice.all)

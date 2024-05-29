@@ -7,7 +7,7 @@ case class PlaybookAttributes(
     prowessDefaults: Prowess,
     resolveDefaults: Resolve,
     stressPoints: Int = 9,
-    traumaPoints: Int = 9,
+    traumaPoints: Int = 4,
     playbookExpPoints: Int = 9,
     insightExpPoints: Int = 6,
     traumaConditions: List[String] = TraumaCondition.all.map(_.toString),
