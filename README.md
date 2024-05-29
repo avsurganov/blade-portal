@@ -5,6 +5,7 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 ## Features
 
 - Access to all playbooks and their special abilities
+- Access to all crews and their special abilities
 - Detailed Swagger API documentation
 - CORS enabled for cross-origin requests
 
@@ -38,6 +39,8 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 - **GET /api/playbooks**: Retrieve all playbooks
 - **GET /api/playbooks/{name}**: Retrieve a specific playbook by name
+- **GET /api/crews**: Retrieve all crews
+- **GET /api/crews/{name}**: Retrieve a specific crew by name
 
 ## Documentation
 
