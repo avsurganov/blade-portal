@@ -8,7 +8,8 @@ case class Crew(
     name: CrewName,
     specialAbilities: List[SpecialAbility],
     contacts: List[Contact],
-    upgrades: List[Upgrade]
+    upgrades: List[Upgrade],
+    masteryPoints: Int = 4
 )
 object Crew { implicit val format: Format[Crew] = Json.format[Crew] }
 

@@ -46,5 +46,79 @@ object CrewUpgradeData {
       description = "+1 to trauma cap",
       cost = 3
     ))
+  }.map { case (name, upgrades) =>
+    name -> (upgrades ++ availableUpgradesForCrew(name))
   }
+
+  private def availableUpgradesForCrew(name: CrewName): List[Upgrade] = List[Upgrade](
+    // General Upgrades
+    Upgrade(
+      "Carriage",
+      "A vehicle for carrying people or cargo",
+      acquired = name match {
+        case CrewName.Smugglers => true
+        case _                  => false
+      }
+    ),
+    Upgrade("Carriage +2", "Enhanced carriages for increased capacity or quality"),
+    Upgrade("Boat", "A vessel for traveling or smuggling via waterways"),
+    Upgrade("Boat +2", "Enhanced boats for increased capacity or quality"),
+    Upgrade(
+      "Hidden",
+      "Concealed compartments or rooms within the lair for secrecy",
+      acquired = name match {
+        case CrewName.Shadows => true
+        case _                => false
+      }
+    ),
+    Upgrade("Quarters", "Living spaces for the crew within the lair"),
+    Upgrade(
+      "Secure",
+      "Reinforced doors, locks, and traps to protect the lair",
+      acquired = name match {
+        case CrewName.Hawkers => true
+        case _                => false
+      }
+    ),
+    Upgrade("Secure +2", "Additional reinforcements for superior lair security"),
+    Upgrade("Vault", "A secure vault for storing valuables and coin"),
+    Upgrade("Vault +2", "Expanded and more secure vault for greater storage capacity"),
+    Upgrade("Workshop", "A space for crafting, tinkering, and alchemical work"),
+    // Training Upgrades
+    Upgrade(
+      "Insight Training",
+      "Mark 1 additional XP when you train Insight.",
+      acquired = name match {
+        case CrewName.Assassins => true
+        case _                  => false
+      }
+    ),
+    Upgrade(
+      "Prowess Training",
+      "Mark 1 additional XP when you train Prowess.",
+      acquired = name match {
+        case CrewName.Assassins | CrewName.Bravos | CrewName.Smugglers | CrewName.Shadows => true
+        case _                                                                            => false
+      }
+    ),
+    Upgrade(
+      "Resolve Training",
+      "Mark 1 additional XP when you train Resolve.",
+      acquired = name match {
+        case CrewName.Cult | CrewName.Hawkers => true
+        case _                                => false
+      }
+    ),
+    Upgrade("Personal Training", "Mark 1 additional XP when you train any attribute."),
+    // Quality Upgrades
+    Upgrade("Documents", "Secure storage for important papers and records, providing +1d to gather information related to documents."),
+    Upgrade("Gear", "Storage for specialized equipment and gear, providing +1d to actions involving this gear."),
+    Upgrade(
+      "Implements",
+      "Storage for tools and devices used in crew operations, providing +1d to craft, repair, or use these implements."
+    ),
+    Upgrade("Supplies", "Stockpile of necessary supplies and consumables, providing +1d to actions that require specific supplies."),
+    Upgrade("Tools", "A collection of tools for various tasks and repairs, providing +1d to actions requiring these tools."),
+    Upgrade("Weapon", "Storage and maintenance for the crew's weaponry, providing +1d to actions involving the use of these weapons.")
+  )
 }
