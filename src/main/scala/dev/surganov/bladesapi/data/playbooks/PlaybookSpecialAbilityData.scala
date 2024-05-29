@@ -1,8 +1,9 @@
 package dev.surganov.bladesapi.data.playbooks
 
-import dev.surganov.bladesapi.playbooks.models.{PlaybookName, SpecialAbility}
+import dev.surganov.bladesapi.common.models.SpecialAbility
+import dev.surganov.bladesapi.playbooks.models.PlaybookName
 
-object SpecialAbilityData {
+object PlaybookSpecialAbilityData {
   val data: Map[PlaybookName, List[SpecialAbility]] = Map[PlaybookName, List[SpecialAbility]](
     PlaybookName.Cutter -> List[SpecialAbility](
       SpecialAbility(

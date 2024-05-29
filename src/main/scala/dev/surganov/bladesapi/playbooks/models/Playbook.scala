@@ -1,5 +1,6 @@
 package dev.surganov.bladesapi.playbooks.models
 
+import dev.surganov.bladesapi.common.models.SpecialAbility
 import dev.surganov.bladesapi.common.{SuccessResponse, SuccessResponseFormat}
 import play.api.libs.json.{Format, Json}
 

@@ -1,4 +1,4 @@
-package dev.surganov.bladesapi.playbooks.models
+package dev.surganov.bladesapi.common.models
 
 import play.api.libs.json.{Format, Json}
 

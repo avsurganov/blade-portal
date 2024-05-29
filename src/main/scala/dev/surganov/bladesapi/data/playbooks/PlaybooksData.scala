@@ -13,7 +13,7 @@ object PlaybooksData {
   def playbook(name: PlaybookName): Playbook = {
     Playbook(
       name = name,
-      specialAbilities = SpecialAbilityData.data(name),
+      specialAbilities = PlaybookSpecialAbilityData.data(name),
       attributes = PlaybookAttributesData.data(name),
       contacts = PlaybookContactData.data(name),
       availableItems = ItemData.data(name),

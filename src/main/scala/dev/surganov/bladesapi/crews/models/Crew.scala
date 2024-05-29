@@ -1,9 +1,13 @@
 package dev.surganov.bladesapi.crews.models
 
+import dev.surganov.bladesapi.common.models.SpecialAbility
 import dev.surganov.bladesapi.common.{SuccessResponse, SuccessResponseFormat}
 import play.api.libs.json.{Format, Json}
 
-case class Crew(name: CrewName)
+case class Crew(
+    name: CrewName,
+    specialAbilities: List[SpecialAbility]
+)
 object Crew { implicit val format: Format[Crew] = Json.format[Crew] }
 
 case class CrewList(crews: List[Crew])
