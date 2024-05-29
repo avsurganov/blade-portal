@@ -7,7 +7,8 @@ import play.api.libs.json.{Format, Json}
 case class Crew(
     name: CrewName,
     specialAbilities: List[SpecialAbility],
-    contacts: List[Contact]
+    contacts: List[Contact],
+    upgrades: List[Upgrade]
 )
 object Crew { implicit val format: Format[Crew] = Json.format[Crew] }
 

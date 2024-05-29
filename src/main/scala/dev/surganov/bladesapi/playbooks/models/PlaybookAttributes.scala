@@ -6,11 +6,11 @@ case class PlaybookAttributes(
     insightDefaults: Insight,
     prowessDefaults: Prowess,
     resolveDefaults: Resolve,
+    traumaConditions: List[TraumaCondition],
     stressPoints: Int = 9,
     traumaPoints: Int = 4,
     playbookExpPoints: Int = 9,
-    insightExpPoints: Int = 6,
-    traumaConditions: List[String] = TraumaCondition.all.map(_.toString),
+    attributesExpPoints: Int = 6
 )
 object PlaybookAttributes {
   implicit val format: Format[PlaybookAttributes] = Json.format
