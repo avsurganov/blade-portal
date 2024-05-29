@@ -12,6 +12,6 @@ object CrewsData {
   }
 
   def crew(name: CrewName): Crew = {
-    Crew(name, CrewSpecialAbilityData.data(name), CrewContactData.data(name))
+    Crew(name, CrewSpecialAbilityData.data(name), CrewContactData.data(name), CrewUpgradeData.data(name))
   }
 }
