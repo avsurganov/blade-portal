@@ -18,7 +18,8 @@ object CrewsData {
       specialAbilities = CrewSpecialAbilityData.data(name),
       contacts = CrewContactData.data(name),
       upgrades = CrewUpgradeData.data(name),
-      attributes = CrewAttributes(HoldStatus.all, Tier.all)
+      attributes = CrewAttributes(HoldStatus.all, Tier.all),
+      cohorts = CrewUpgradeData.cohorts(name)
     )
   }
 }

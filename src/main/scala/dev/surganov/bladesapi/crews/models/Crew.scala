@@ -1,5 +1,6 @@
 package dev.surganov.bladesapi.crews.models
 
+import dev.surganov.bladesapi.cohorts.models.Cohort
 import dev.surganov.bladesapi.common.models.{Contact, SpecialAbility}
 import dev.surganov.bladesapi.common.{SuccessResponse, SuccessResponseFormat}
 import play.api.libs.json.{Format, Json}
@@ -10,7 +11,8 @@ case class Crew(
     specialAbilities: List[SpecialAbility],
     contacts: List[Contact],
     upgrades: List[Upgrade],
-    attributes: CrewAttributes
+    attributes: CrewAttributes,
+    cohorts: List[Cohort]
 )
 object Crew { implicit val format: Format[Crew] = Json.format[Crew] }
 

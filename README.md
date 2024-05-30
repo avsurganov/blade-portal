@@ -6,6 +6,7 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 - Access to all playbooks and their special abilities
 - Access to all crews and their special abilities
+- Access to all cohorts
 - Detailed Swagger API documentation
 - CORS enabled for cross-origin requests
 
@@ -45,6 +46,10 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 - **GET /api/crews**: Retrieve all crews
 - **GET /api/crews/{name}**: Retrieve a specific crew by name
 
+### Cohorts
+- **GET /api/cohorts**: Retrieve all cohorts
+- **GET /api/cohorts/{type}**: Retrieve a specific cohort by type
+- 
 ## Documentation
 
 The API documentation is provided using Swagger. You can access the Swagger UI at <https://blades-portal-api.surganov.dev/swagger>.

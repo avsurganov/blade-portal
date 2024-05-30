@@ -1,6 +1,8 @@
 package dev.surganov.bladesapi.data.crews
 
+import dev.surganov.bladesapi.cohorts.models.{Cohort, CohortType, Edge, Flaw}
 import dev.surganov.bladesapi.crews.models.{CrewName, Upgrade}
+import dev.surganov.bladesapi.data.cohorts.CohortData
 
 object CrewUpgradeData {
   val data: Map[CrewName, List[Upgrade]] = Map[CrewName, List[Upgrade]](
@@ -132,4 +134,12 @@ object CrewUpgradeData {
       cost = 4
     )
   )
+
+  def cohorts(name: CrewName): List[Cohort] = {
+    name match {
+      case CrewName.Bravos => List(CohortData.cohort(CohortType.Thugs))
+      case CrewName.Cult   => List(CohortData.cohort(CohortType.Adepts))
+      case _               => List.empty[Cohort]
+    }
+  }
 }
