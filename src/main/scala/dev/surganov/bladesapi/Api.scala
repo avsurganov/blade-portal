@@ -1,5 +1,6 @@
 package dev.surganov.bladesapi
 
+import dev.surganov.bladesapi.cohorts.CohortService
 import dev.surganov.bladesapi.config.ConfigProvider
 import dev.surganov.bladesapi.crews.CrewService
 import dev.surganov.bladesapi.playbooks.PlaybookService
@@ -35,7 +36,8 @@ object Api extends App with LoggerAccess with ConfigProvider with JsonContentTyp
           pathPrefix("api") {
             json {
               PlaybookService.routes ~
-                CrewService.routes
+                CrewService.routes ~
+                CohortService.routes
             }
           } ~
           pathPrefix("swagger") {
