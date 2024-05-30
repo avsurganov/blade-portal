@@ -16,6 +16,7 @@ object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
   )
   override val host = s"${config.host}:${config.port}"
   override val info: Info = Info(
+    title = "Blades in the Dark API",
     description =
       "This project is an API for the game \"Blades in the Dark\". The API provides access to playbooks, abilities, crews, and other game-related data.",
     contact = Some(
