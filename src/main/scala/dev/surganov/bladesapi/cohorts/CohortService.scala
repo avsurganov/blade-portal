@@ -29,7 +29,7 @@ object CohortService extends JsonSupport with LoggerAccess {
       new ApiResponse(
         responseCode = "200",
         description = "All cohorts retrieved",
-        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[CohortResponse])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[CohortListResponse])))
       ),
       new ApiResponse(
         responseCode = "500",
