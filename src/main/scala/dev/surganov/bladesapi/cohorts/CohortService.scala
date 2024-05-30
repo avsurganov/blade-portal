@@ -48,10 +48,10 @@ object CohortService extends JsonSupport with LoggerAccess {
   @GET
   @Path("{type}")
   @Operation(
-    summary = "Get cohort by name",
+    summary = "Get cohort by type",
     parameters = Array(
       new Parameter(
-        name = "name",
+        name = "type",
         in = ParameterIn.PATH,
         description = "Name of the cohort",
         required = true
