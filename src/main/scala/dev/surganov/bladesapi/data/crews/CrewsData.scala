@@ -1,6 +1,6 @@
 package dev.surganov.bladesapi.data.crews
 
-import dev.surganov.bladesapi.crews.models.{Crew, CrewList, CrewName}
+import dev.surganov.bladesapi.crews.models.{Crew, CrewAttributes, CrewList, CrewName, HoldStatus, Reputation, Tier}
 
 object CrewsData {
   def all: CrewList = {
@@ -12,6 +12,13 @@ object CrewsData {
   }
 
   def crew(name: CrewName): Crew = {
-    Crew(name, CrewSpecialAbilityData.data(name), CrewContactData.data(name), CrewUpgradeData.data(name))
+    Crew(
+      name = name,
+      reputations = Reputation.all,
+      specialAbilities = CrewSpecialAbilityData.data(name),
+      contacts = CrewContactData.data(name),
+      upgrades = CrewUpgradeData.data(name),
+      attributes = CrewAttributes(HoldStatus.all, Tier.all)
+    )
   }
 }

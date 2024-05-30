@@ -119,6 +119,17 @@ object CrewUpgradeData {
     ),
     Upgrade("Supplies", "Stockpile of necessary supplies and consumables, providing +1d to actions that require specific supplies."),
     Upgrade("Tools", "A collection of tools for various tasks and repairs, providing +1d to actions requiring these tools."),
-    Upgrade("Weapon", "Storage and maintenance for the crew's weaponry, providing +1d to actions involving the use of these weapons.")
+    Upgrade("Weapon", "Storage and maintenance for the crew's weaponry, providing +1d to actions involving the use of these weapons."),
+    // Special
+    Upgrade(
+      name = "Mastery",
+      description = "Each PC may advance their action ratings to a maximum of 4 (rather than the usual limit of 3). " +
+        "Mastery reflects the crew's dedication to honing their skills beyond ordinary limits. With this upgrade, " +
+        "the crew members can push their capabilities to the pinnacle of human potential, achieving feats that few can rival. " +
+        "Whether it's in combat, stealth, or any other domain, their actions are executed with unmatched precision and effectiveness. " +
+        "This upgrade is a testament to the crew's relentless pursuit of excellence, enabling them to perform extraordinary feats " +
+        "that set them apart from their rivals in Doskvol.",
+      cost = 4
+    )
   )
 }
