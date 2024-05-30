@@ -49,7 +49,7 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 ### Cohorts
 - **GET /api/cohorts**: Retrieve all cohorts
 - **GET /api/cohorts/{type}**: Retrieve a specific cohort by type
-- 
+
 ## Documentation
 
 The API documentation is provided using Swagger. You can access the Swagger UI at <https://blades-portal-api.surganov.dev/swagger>.
