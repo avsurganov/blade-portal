@@ -23,6 +23,12 @@ import org.apache.pekko.stream.Materializer
 import scala.concurrent.ExecutionContext
 import scala.util.{Failure, Success}
 
+@SecurityScheme(
+  name = "bearerAuth",
+  `type` = SecuritySchemeType.HTTP,
+  scheme = "bearer",
+  bearerFormat = "JWT"
+)
 @Path("/api/ai")
 @Tag(name = "AI", description = "Operations related to AI image generation")
 class ImageService(dallEClient: DallEClient, cloudinaryClient: CloudinaryClient)(implicit
@@ -66,12 +72,6 @@ class ImageService(dallEClient: DallEClient, cloudinaryClient: CloudinaryClient)
       )
     ),
     security = Array(new SecurityRequirement(name = "bearerAuth"))
-  )
-  @SecurityScheme(
-    name = "bearerAuth",
-    `type` = SecuritySchemeType.HTTP,
-    scheme = "bearer",
-    bearerFormat = "JWT"
   )
   def generateImageRoute: Route = {
     path("generate-character-image") {
