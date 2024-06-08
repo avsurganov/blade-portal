@@ -1,54 +1,16 @@
 package dev.surganov.bladesapi
 
-import dev.surganov.bladesapi.cohorts.CohortService
 import dev.surganov.bladesapi.config.ConfigProvider
-import dev.surganov.bladesapi.crews.CrewService
-import dev.surganov.bladesapi.playbooks.PlaybookService
-import dev.surganov.bladesapi.swagger.SwaggerDocService
-import dev.surganov.bladesapi.util.{HtmlRendererHelper, JsonContentTypeSupport, LoggerAccess}
-import org.apache.pekko.actor.typed.ActorSystem
-import org.apache.pekko.actor.typed.scaladsl.Behaviors
-import org.apache.pekko.http.cors.scaladsl.CorsDirectives.cors
+import dev.surganov.bladesapi.util.{JsonContentTypeSupport, LoggerAccess}
 import org.apache.pekko.http.scaladsl.Http
-import org.apache.pekko.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
-import org.apache.pekko.http.scaladsl.server.Directives._
 
+import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, ExecutionContext}
 
-object Api extends App with LoggerAccess with ConfigProvider with JsonContentTypeSupport {
-  implicit val system: ActorSystem[Any] = ActorSystem(Behaviors.empty, "blades-api")
-  implicit val ec: ExecutionContext = system.executionContext
-
+object Api extends ApiModule with App with LoggerAccess with ConfigProvider with JsonContentTypeSupport {
   sys.addShutdownHook {
     log.info("Shutdown hook triggered, terminating the system.")
     terminate()
-  }
-
-  import dev.surganov.bladesapi.util.CustomExceptionHandler._
-
-  private val routes = cors() {
-    handleExceptions(customExceptionHandler) {
-      handleRejections(customRejectionHandler) {
-        pathSingleSlash {
-          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, HtmlRendererHelper.renderReadmeToHtml))
-        } ~
-          pathPrefix("api") {
-            json {
-              PlaybookService.routes ~
-                CrewService.routes ~
-                CohortService.routes
-            }
-          } ~
-          pathPrefix("swagger") {
-            getFromResourceDirectory("swagger-ui")
-          } ~
-          path("swagger") {
-            redirect("/swagger/index.html", StatusCodes.PermanentRedirect)
-          } ~
-          SwaggerDocService.routes
-      }
-    }
   }
 
   private val bindingFuture = Http().newServerAt(config.host, config.port).bind(routes)

@@ -13,7 +13,7 @@ object EnvLoader extends LoggerAccess {
           sys.props += (key -> value)
         }
         source.close()
-      case Failure(exception) =>
+      case Failure(_) =>
         log.warn("No .env file found, skipping environment variable loading from file.")
     }
   }

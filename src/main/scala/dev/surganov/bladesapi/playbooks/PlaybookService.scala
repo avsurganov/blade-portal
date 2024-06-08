@@ -18,7 +18,7 @@ import scala.util.{Failure, Success, Try}
 
 @Path("/api/playbooks")
 @Tag(name = "Playbooks", description = "Operations related to Playbooks")
-object PlaybookService extends JsonSupport with LoggerAccess {
+class PlaybookService extends JsonSupport with LoggerAccess {
   def routes: Route = getAllPlaybooks ~ getPlaybookByName
 
   @GET
