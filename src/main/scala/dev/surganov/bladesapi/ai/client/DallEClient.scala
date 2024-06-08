@@ -15,7 +15,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class DallEClient(implicit ec: ExecutionContext, mat: Materializer, sys: ActorSystem[Any]) extends ConfigProvider with LoggerAccess {
   private def optimizePrompt(description: String): String = {
-    s"Create a detailed portrait of a character from the game Blades in the Dark. Description: $description. Background: gloomy city of Duskvol. No text or additional elements."
+    s"Create a detailed portrait of a single character from the game Blades in the Dark. Description: $description. The background should be the gloomy city of Duskvol. Ensure it is a single portrait. No text or additional elements."
   }
 
   def generateCharacterImage(
