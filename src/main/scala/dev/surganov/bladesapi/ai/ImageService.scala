@@ -6,9 +6,11 @@ import dev.surganov.bladesapi.common.ErrorResponse
 import dev.surganov.bladesapi.config.ConfigProvider
 import dev.surganov.bladesapi.util.{JsonSupport, LoggerAccess}
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType
 import io.swagger.v3.oas.annotations.media.{Content, Schema}
 import io.swagger.v3.oas.annotations.parameters.RequestBody
 import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.security.{SecurityRequirement, SecurityScheme}
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.ws.rs.{POST, Path}
 import org.apache.pekko.actor.typed.ActorSystem
@@ -50,7 +52,7 @@ class ImageService(dallEClient: DallEClient, cloudinaryClient: CloudinaryClient)
       new ApiResponse(
         responseCode = "200",
         description = "Image URLs generated",
-        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[Seq[String]])))
+        content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[BladesImageResponse])))
       ),
       new ApiResponse(
         responseCode = "401",
@@ -62,7 +64,14 @@ class ImageService(dallEClient: DallEClient, cloudinaryClient: CloudinaryClient)
         description = "Internal server error",
         content = Array(new Content(mediaType = "application/json", schema = new Schema(implementation = classOf[ErrorResponse])))
       )
-    )
+    ),
+    security = Array(new SecurityRequirement(name = "bearerAuth"))
+  )
+  @SecurityScheme(
+    name = "bearerAuth",
+    `type` = SecuritySchemeType.HTTP,
+    scheme = "bearer",
+    bearerFormat = "JWT"
   )
   def generateImageRoute: Route = {
     path("generate-character-image") {
