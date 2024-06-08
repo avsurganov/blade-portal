@@ -5,20 +5,22 @@ import com.github.swagger.pekko.model.{Contact, Info, License}
 import dev.surganov.bladesapi.cohorts.CohortService
 import dev.surganov.bladesapi.config.ConfigProvider
 import dev.surganov.bladesapi.crews.CrewService
+import dev.surganov.bladesapi.ai.ImageService
 import dev.surganov.bladesapi.playbooks.PlaybookService
 import io.swagger.v3.oas.models.ExternalDocumentation
 
-object SwaggerDocService extends SwaggerHttpService with ConfigProvider {
+class SwaggerDocService extends SwaggerHttpService with ConfigProvider {
   override val apiClasses: Set[Class[_]] = Set(
-    PlaybookService.getClass,
-    CrewService.getClass,
-    CohortService.getClass
+    classOf[PlaybookService],
+    classOf[CrewService],
+    classOf[CohortService],
+    classOf[ImageService]
   )
   override val host = s"${config.host}:${config.port}"
   override val info: Info = Info(
     title = "Blades in the Dark API",
     description =
-      "This project is an API for the game \"Blades in the Dark\". The API provides access to playbooks, abilities, crews, and other game-related data.",
+      "This project is an API for the game \"Blades in the Dark\". The API provides access to playbooks, abilities, crews, cohorts, and AI character image generation",
     contact = Some(
       Contact(
         name = "Vlad Surganov",

@@ -17,7 +17,7 @@ val swaggerDependencies = Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "Blades API",
-    version := "1.0.0",
+    version := "1.1.0",
     organization := "dev.surganov.bladesapi",
     libraryDependencies ++= Seq(
       "pl.iterators" %% "kebs-spray-json" % "1.9.7",
@@ -27,6 +27,9 @@ lazy val root = (project in file("."))
       "org.apache.pekko" %% "pekko-http-cors" % Versions.pekko,
       "org.apache.pekko" %% "pekko-actor-typed" % Versions.pekko,
       "org.apache.pekko" %% "pekko-stream" % Versions.pekko,
+      // Macwire
+      "com.softwaremill.macwire" %% "macros" % Versions.macwire % "provided",
+      "com.softwaremill.macwire" %% "util" % Versions.macwire,
       // Logging
       "org.apache.pekko" %% "pekko-slf4j" % Versions.pekko,
       "ch.qos.logback" % "logback-classic" % "1.5.6",
@@ -35,6 +38,9 @@ lazy val root = (project in file("."))
       // Enums
       "com.beachape" %% "enumeratum" % Versions.enum,
       "com.beachape" %% "enumeratum-play-json" % Versions.enum,
+      // Cloudinary
+      "com.cloudinary" % "cloudinary-core" % "1.38.0",
+      "com.cloudinary" % "cloudinary-http45" % "1.38.0",
       // HTML Render
       "com.vladsch.flexmark" % "flexmark-all" % "0.64.8",
       // ENV Support

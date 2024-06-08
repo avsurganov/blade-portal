@@ -7,6 +7,7 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 - Access to all playbooks and their special abilities
 - Access to all crews and their special abilities
 - Access to all cohorts
+- AI Image Generation for character creation
 - Detailed Swagger API documentation
 - CORS enabled for cross-origin requests
 
@@ -14,8 +15,9 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 
 ### Prerequisites
 
-- Java 17 or higher
-- sbt 1.8.1 or higher
+- Java 17
+- sbt 1.8.1
+- Scala 2.12.15
 
 ### Running the Application
 
@@ -49,6 +51,9 @@ This project is an API for the game "Blades in the Dark". The API provides acces
 ### Cohorts
 - **GET /api/cohorts**: Retrieve all cohorts
 - **GET /api/cohorts/{type}**: Retrieve a specific cohort by type
+
+### AI
+- **POST /api/ai/generate-character-image**: Generates a portrait for your character
 
 ## Documentation
 

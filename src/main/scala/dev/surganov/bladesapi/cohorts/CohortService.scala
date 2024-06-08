@@ -18,7 +18,7 @@ import scala.util.{Failure, Success, Try}
 
 @Path("/api/cohorts")
 @Tag(name = "Cohorts", description = "Operations related to Cohorts")
-object CohortService extends JsonSupport with LoggerAccess {
+class CohortService extends JsonSupport with LoggerAccess {
   def routes: Route = getAllCohorts ~ getCohortByName
 
   @GET
